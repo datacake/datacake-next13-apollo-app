@@ -1,0 +1,5 @@
+mutation auth  {
+  login(email: "serhiibessonov.work@gmail.com", password: "QadsnDB*x454") {
+    token
+  }
+}

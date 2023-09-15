@@ -1,0 +1,23 @@
+query getAllDevices {
+  allDevices(inWorkspace:"23c16441-1ca1-456f-8aa8-dc6c330df964") {
+    id
+    verboseName
+    serialNumber
+    tags
+    location
+    lastHeard
+    online
+		currentMeasurements(fieldNames:[
+      "INTERNAL_TEMPERATURE", 
+      "BATTERY",
+      "DOOR_OPEN",
+      "WARNING"
+    ]) {
+      value
+      field {
+        fieldName
+        verboseFieldName
+      }
+    }
+  }
+}

@@ -1,3 +1,72 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["@typescript-eslint", "react", "jsx-a11y", "tailwindcss", "import"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+  "rules": {
+    "no-shadow": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "import/no-unresolved": [2, { "commonjs": true, "amd": true }],
+    "import/extensions": ["error", "ignorePackages", {
+      "js": "never",
+      "jsx": "never",
+      "ts": "never",
+      "tsx": "never"
+    }],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx", ".gql"] }],
+    "react/prop-types": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "no-unused-vars": "off",
+    "react/jsx-curly-spacing": [2, {"when": "always"}],
+    "object-curly-spacing": ["error", "always"],
+    "array-bracket-spacing": ["error", "always"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "quotes": ["error", "single"]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "react/prop-types": "off"
+      }
+    }
+  ]
 }

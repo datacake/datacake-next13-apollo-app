@@ -1,0 +1,4 @@
+schema: 'https://api.datacake.co/graphql/'
+extensions:
+  languageService:
+    cacheSchemaFileForLookup: true
