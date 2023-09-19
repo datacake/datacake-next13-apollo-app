@@ -1,17 +1,16 @@
 import { FC, HTMLAttributes } from 'react';
 import { TFlattenDevice } from 'types/generalTypes';
 import { cn } from 'utils/generalUtils';
+import DeviceTableRowTag from 'src/components/deviceTable/deviceTableRow/deviceTableRowTag';
 
-type TDeviceTableRow = HTMLAttributes<HTMLTableRowElement> & TFlattenDevice;
+type TDeviceTableRow = HTMLAttributes<HTMLTableRowElement> & Omit<TFlattenDevice, 'temperatureChartData' | 'DOOR_OPEN' | 'lastHeard' | 'location'>;
 
 const DeviceTableRow: FC<TDeviceTableRow> = ({
   BATTERY,
-  DOOR_OPEN,
+  trend,
   INTERNAL_TEMPERATURE,
   WARNING,
   id,
-  lastHeard,
-  location,
   online,
   serialNumber,
   tags,
@@ -35,7 +34,7 @@ const DeviceTableRow: FC<TDeviceTableRow> = ({
       { INTERNAL_TEMPERATURE }
       &deg;C
     </td>
-    <td className='whitespace-nowrap font-[400]  px-6 py-4'>-</td>
+    <td className='whitespace-nowrap font-[400]  px-6 py-4'>{ trend }</td>
     <td className={ cn('whitespace-nowrap font-[400]  px-6 py-4', {
       'text-red-600': WARNING === 1,
     }) }
@@ -43,9 +42,12 @@ const DeviceTableRow: FC<TDeviceTableRow> = ({
       { WARNING === 0 ? 'no alarm' : 'alarm' }
 
     </td>
-    <td className='whitespace-nowrap font-[400]  px-6 py-4'>@mdo</td>
     <td className='whitespace-nowrap font-[400]  px-6 py-4'>{ BATTERY }</td>
-    <td className='whitespace-nowrap font-[400]  px-6 py-4'>{ tags.map((item) => <span key={ item }>{item}</span>) }</td>
+    <td className='whitespace-nowrap font-[400]  px-6 py-4 max-w-[250px] flex flex-wrap gap-2'>
+      { tags.map((item) => (
+        <DeviceTableRowTag key={ item } text={ item } />
+      )) }
+    </td>
   </tr>
 );
 

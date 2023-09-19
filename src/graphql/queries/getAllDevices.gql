@@ -19,5 +19,13 @@ query getAllDevices {
         verboseFieldName
       }
     }
+    roleFields {
+      role
+      field {
+        verboseFieldName
+        fieldName
+      }
+      chartData
+    }
   }
 }

@@ -2,6 +2,24 @@ import { ImageProps as NextImageProps } from 'next/image';
 
 export type SrcType = NextImageProps['src'] | string;
 
+export enum DeviceRoleFields {
+  LOCATION = 'LOCATION',
+  BATTERY = 'BATTERY',
+  INTERNAL_TEMPERATURE = 'INTERNAL_TEMPERATURE',
+}
+
+export type RoleFieldsField = {
+  fieldName: DeviceRoleFields;
+  verboseFieldName: string;
+}
+
+export type RoleFields = {
+  role: string;
+  value: number;
+  field: RoleFieldsField;
+  chartData: number[];
+}
+
 export enum DeviceMeasurementFields {
   INTERNAL_TEMPERATURE = 'INTERNAL_TEMPERATURE',
   BATTERY = 'BATTERY',
@@ -26,7 +44,8 @@ export type TDevice = {
   tags: string[];
   location: string;
   lastHeard: string;
-  currentMeasurements?: CurrentMeasurement[];
+  currentMeasurements: CurrentMeasurement[];
+  roleFields: RoleFields[];
   online: boolean;
 }
 
@@ -42,4 +61,11 @@ export type TFlattenDevice = {
   WARNING: number;
   DOOR_OPEN: number;
   online: boolean;
+  temperatureChartData: number[];
+  trend: number;
+}
+
+export type TSelect<T> = {
+  current: T;
+  options: T[];
 }

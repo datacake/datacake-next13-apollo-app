@@ -29,6 +29,7 @@ import {
 // With SSR
 function makeClient() {
   return new NextSSRApolloClient({
+    connectToDevTools: true,
     cache: new NextSSRInMemoryCache(),
     link:
       typeof window === 'undefined'

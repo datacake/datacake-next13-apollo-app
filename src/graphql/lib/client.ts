@@ -10,13 +10,13 @@ import {
   NextSSRApolloClient,
 } from '@apollo/experimental-nextjs-app-support/ssr';
 import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc';
+import customApolloLink from 'src/graphql/lib/link';
 
 const { getClient } = registerApolloClient(
   () => new NextSSRApolloClient({
+    connectToDevTools: true,
     cache: new NextSSRInMemoryCache(),
-    link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_GRAPHQL_URI,
-    }),
+    link: customApolloLink,
   }),
 );
 

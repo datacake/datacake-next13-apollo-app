@@ -1,5 +1,5 @@
 import Providers from 'src/app/Providers';
-import './globals.css';
+import './globals.scss';
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import { twMerge } from 'tailwind-merge';
