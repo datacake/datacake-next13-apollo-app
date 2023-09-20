@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TGetAllDevices } from '@/app/page';
+import { TGetAllDevices } from '@/app/home/page';
 import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { DeviceMeasurementFields, DeviceRoleFields, TFlattenDevice } from 'types/generalTypes';

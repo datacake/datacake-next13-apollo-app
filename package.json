@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.3",
-    "@apollo/experimental-nextjs-app-support": "^0.4.2",
     "@apollo/link-context": "^2.0.0-beta.3",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
@@ -23,6 +22,7 @@
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-spinners": "^0.13.8",
     "reselect": "^4.1.8",
     "sass": "^1.67.0",
     "scss": "^0.2.4",

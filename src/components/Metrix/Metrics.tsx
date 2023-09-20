@@ -27,7 +27,7 @@ const Metrics: FC<TMetrics> = ({
   ...restProps
 }) => (
   <section
-    className='text-gray-600 body-font'
+    className='text-gray-600'
     { ...restProps }
   >
     <div

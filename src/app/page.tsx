@@ -1,29 +1,26 @@
+'use client';
+
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { useMutation } from '@apollo/client';
+import { useEffect, useId, useState } from 'react';
+import { auth } from '@/graphql/mutations/auth.gql';
 
-import Metrics from '@/components/Metrix';
-import DeviceTable from '@/components/deviceTable';
-import getClient from '@/graphql/lib/client';
-import getAllDevices from '@/graphql/queries/getAllDevices.gql';
 import type { TDevice } from 'types/generalTypes';
-import { calculateDevicesMetrics, flattenDevices } from 'utils/generalUtils';
+import { useRouter } from 'next/navigation';
+import useAuth from '@/hooks/useAuth';
 
 export type TGetAllDevices = {
   allDevices: TDevice[];
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
 }
 
 export const revalidate = 1;
 
-const Page = async () => {
-  const { data }: { data: TGetAllDevices } = await getClient().query({ query: getAllDevices, fetchPolicy: 'no-cache' });
-  const flattenedDevices = flattenDevices(data);
-  const devicesMetrics = calculateDevicesMetrics({ deviceArray: flattenedDevices });
+const Page = () => {
+  useAuth();
   return (
-    <main className='p-4 pl-[256px] max-w-7xl overflow-hidden'>
-      { devicesMetrics && <Metrics devicesMetrics={ devicesMetrics } /> }
-      { flattenedDevices.length > 0 && <DeviceTable deviceArr={ flattenedDevices } /> }
-    </main>
+    <>
+    </>
   );
 };
 

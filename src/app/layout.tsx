@@ -3,7 +3,6 @@ import './globals.scss';
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import { twMerge } from 'tailwind-merge';
-import Sidebar from '@/components/sidebar';
 
 const montserrat = Montserrat({ subsets: [ 'latin' ] });
 
@@ -18,8 +17,7 @@ const RootLayout = ({
   children: React.ReactNode;
 }) => (
   <html lang='en'>
-    <body className={ twMerge('bg-slate-300 flex', montserrat.className) }>
-      <Sidebar />
+    <body className={ twMerge('bg-slate-300', montserrat.className) }>
       <Providers>{children}</Providers>
     </body>
   </html>
