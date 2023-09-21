@@ -43,7 +43,7 @@ const DeviceTableRow: FC<TDeviceTableRow> = ({
 
     </td>
     <td className='whitespace-nowrap font-[400]  px-6 py-4'>{ BATTERY }</td>
-    <td className='whitespace-nowrap font-[400]  px-6 py-4 max-w-[250px] flex flex-wrap gap-2'>
+    <td className='whitespace-nowrap font-[400]  px-6 py-4 max-w-[450px] flex flex-wrap gap-2'>
       { tags.map((item) => (
         <DeviceTableRowTag key={ item } text={ item } />
       )) }

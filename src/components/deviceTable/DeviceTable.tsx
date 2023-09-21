@@ -39,8 +39,8 @@ const DeviceTable: FC<IDeviceTable> = ({ deviceArr }) => {
   if (filteredDevices.length < 1) return null;
 
   return (
-    <>
-      <div className='w-[200px]'>
+    <div className='flex items-center flex-col'>
+      <div className='w-[200px] self-start'>
         <CustomSelect
           currValue={ filterByTagsCurrent }
           setActiveOption={ setFilterByTagsCurrent }
@@ -48,10 +48,11 @@ const DeviceTable: FC<IDeviceTable> = ({ deviceArr }) => {
           options={ filterByTagsOptions }
         />
       </div>
-      <div className='max-h-[500px] overflow-y-auto scrollbar scrollbar-thumb-gray-400 scrollbar-track-gray-200 custom-scrollbar'>
-        <table className='min-w-full text-left text-sm font-light rounded-lg'>
+      <div className='max-h-[500px] overflow-hidden overflow-y-auto scrollbar rounded-lg scrollbar-thumb-gray-400 scrollbar-track-gray-200 custom-scrollbar'>
+        <table className='min-w-fit max-w-7xl text-left text-sm font-light'>
           <thead
             className='border-b bg-gray-400 border-gray-400 text-gray-200 text-center sticky top-0'
+            style={ { zIndex: 2 } }
           >
             <tr>
               <th scope='col' className='px-6 py-4 font-medium'>Status</th>
@@ -65,7 +66,7 @@ const DeviceTable: FC<IDeviceTable> = ({ deviceArr }) => {
             </tr>
           </thead>
           <tbody>
-            { filteredDevices.map((device) => (
+            {filteredDevices.map((device) => (
               <DeviceTableRow
                 trend={ device.trend }
                 key={ device.id }
@@ -78,11 +79,12 @@ const DeviceTable: FC<IDeviceTable> = ({ deviceArr }) => {
                 tags={ device.tags }
                 verboseName={ device.verboseName }
               />
-            )) }
+            ))}
           </tbody>
         </table>
+
       </div>
-    </>
+    </div>
   );
 };
 

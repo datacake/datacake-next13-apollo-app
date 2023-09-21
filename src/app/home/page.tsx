@@ -22,7 +22,7 @@ const Page = () => {
   const flattenedDevices = flattenDevices(data || { allDevices: [] });
   const devicesMetrics = calculateDevicesMetrics({ deviceArray: flattenedDevices });
   return (
-    <main className='p-4 pl-[256px] min-h-[100vh] max-w-7xl overflow-hidden'>
+    <main className='p-4 pl-[256px] min-h-[100vh] flex items-center flex-col overflow-hidden'>
       { loading ? (
         <div className='w-full min-h-[100vh] flex items-center justify-center absolute top-0 left-0'>
           <PacmanLoader
