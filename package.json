@@ -25,6 +25,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.1",
     "react-spinners": "^0.13.8",
+    "recharts": "^2.8.0",
     "reselect": "^4.1.8",
     "sass": "^1.67.0",
     "scss": "^0.2.4",

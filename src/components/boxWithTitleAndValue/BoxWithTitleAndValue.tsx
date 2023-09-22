@@ -1,18 +1,18 @@
 import { FC, ComponentPropsWithoutRef } from 'react';
 
-type TMetricItem = ComponentPropsWithoutRef<'div'> & {
+type TBoxWithTitleAndValue = ComponentPropsWithoutRef<'div'> & {
   title: string;
   value: number | string;
 }
 
-const MetricItem: FC<TMetricItem> = ({
+const BoxWithTitleAndValue: FC<TBoxWithTitleAndValue> = ({
   title,
   value,
   ...restProps
 }) => (
 
   <div
-    className='h-[180px] p-4 bg-gray-100 bg-opacity-75 flex flex-col items-center justify-center w-1/6 min-w-[180px] rounded-lg overflow-hidden text-center shadow-custom'
+    className='h-[180px] p-4 bg-gray-100 bg-opacity-75 flex flex-col items-center justify-center w-[230px] rounded-lg overflow-hidden text-center shadow-custom'
     { ...restProps }
   >
     <h2 className='sm:text-base text-sm font-bold text-gray-500 mb-1'>{ title }</h2>
@@ -20,4 +20,4 @@ const MetricItem: FC<TMetricItem> = ({
   </div>
 );
 
-export default MetricItem;
+export default BoxWithTitleAndValue;

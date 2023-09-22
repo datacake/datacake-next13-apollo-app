@@ -2,6 +2,7 @@ import { FC, HTMLAttributes } from 'react';
 import { TFlattenDevice } from 'types/generalTypes';
 import { cn } from 'utils/generalUtils';
 import DeviceTableRowTag from 'src/components/deviceTable/deviceTableRow/deviceTableRowTag';
+import Link from 'next/link';
 
 type TDeviceTableRow = HTMLAttributes<HTMLTableRowElement> & Omit<TFlattenDevice, 'temperatureChartData' | 'DOOR_OPEN' | 'lastHeard' | 'location'>;
 
@@ -28,7 +29,13 @@ const DeviceTableRow: FC<TDeviceTableRow> = ({
         }) }
       />
     </td>
-    <td className='whitespace-nowrap font-[400]  px-6 py-4'>{ verboseName }</td>
+    <td className='whitespace-nowrap font-[400]  px-6 py-4'>
+      <Link
+        href={ `/home/device/${id}` }
+      >
+        { verboseName }
+      </Link>
+    </td>
     <td className='whitespace-nowrap font-[400]  px-6 py-4'>{ serialNumber }</td>
     <td className='whitespace-nowrap font-[400]  px-6 py-4 text-center'>
       { INTERNAL_TEMPERATURE }

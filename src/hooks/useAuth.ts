@@ -20,6 +20,9 @@ function getRequiredStatus(pathname: string) {
   if (pathname === '/home') {
     return 'user';
   }
+  if (pathname.startsWith('/home/device/')) {
+    return 'user';
+  }
   return 'guest';
 }
 

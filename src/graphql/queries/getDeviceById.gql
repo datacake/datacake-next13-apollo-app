@@ -1,0 +1,27 @@
+query getDevice($deviceId: String!) {
+  device(deviceId: $deviceId) {
+    id
+    image
+    verboseName
+    serialNumber
+    tags
+    location
+    lastHeard
+    online
+    currentMeasurements(fieldNames: ["INTERNAL_TEMPERATURE", "BATTERY", "DOOR_OPEN", "WARNING"]) {
+      value
+      field {
+        fieldName
+        verboseFieldName
+      }
+    }
+    roleFields {
+      role
+      field {
+        fieldName
+        verboseFieldName
+      }
+      chartData
+    }
+  }
+}

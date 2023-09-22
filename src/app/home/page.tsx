@@ -9,7 +9,8 @@ import getAllDevices from '@/graphql/queries/getAllDevices.gql';
 import { useQuery } from '@apollo/client';
 import { PacmanLoader } from 'react-spinners';
 import type { TDevice } from 'types/generalTypes';
-import { calculateDevicesMetrics, flattenDevices } from 'utils/generalUtils';
+import { calculateAveragesDevicesKpis, calculateDevicesMetrics, flattenDevices } from 'utils/generalUtils';
+import Kpis from '@/components/kpis';
 
 export type TGetAllDevices = {
   allDevices: TDevice[];
@@ -21,6 +22,7 @@ const Page = () => {
   const { data, loading, error } = useQuery<TGetAllDevices>(getAllDevices);
   const flattenedDevices = flattenDevices(data || { allDevices: [] });
   const devicesMetrics = calculateDevicesMetrics({ deviceArray: flattenedDevices });
+  const averageKpis = calculateAveragesDevicesKpis({ deviceArray: flattenedDevices });
   return (
     <main className='p-4 pl-[256px] min-h-[100vh] flex items-center flex-col overflow-hidden'>
       { loading ? (
@@ -32,10 +34,11 @@ const Page = () => {
           />
         </div>
       ) : (
-        <>
-          <Metrics devicesMetrics={ devicesMetrics } />
+        <div className='flex flex-col items-start'>
+          <Kpis deviceKpis={ averageKpis } title='Devices base kpis' />
+          <Metrics devicesMetrics={ devicesMetrics } title='Main metrics' />
           <DeviceTable deviceArr={ flattenedDevices } />
-        </>
+        </div>
       )}
     </main>
   );

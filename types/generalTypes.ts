@@ -69,3 +69,8 @@ export type TSelect<T> = {
   current: T;
   options: T[];
 }
+
+export type TTemperatureDataPoint = {
+  time: string;
+  value: number;
+};
