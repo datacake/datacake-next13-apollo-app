@@ -3,7 +3,7 @@
 import {
   ComponentPropsWithoutRef, FC,
 } from 'react';
-import MetricItem from './MetricItem';
+import MetricItem from './metricItem';
 
 type TDevicesMetricsItem = {
   title: string;

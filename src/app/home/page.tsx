@@ -3,7 +3,7 @@
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import Metrics from '@/components/Metrix';
+import Metrics from '@/components/metrix';
 import DeviceTable from '@/components/deviceTable';
 import getAllDevices from '@/graphql/queries/getAllDevices.gql';
 import { useQuery } from '@apollo/client';
@@ -29,7 +29,6 @@ const Page = () => {
             color='#36d7b7'
             size={ 50 }
             aria-label='Loading Spinner'
-            data-testid='loader'
           />
         </div>
       ) : (
