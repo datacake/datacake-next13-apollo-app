@@ -49,6 +49,10 @@ export type TDevice = {
   online: boolean;
 }
 
+export type TDeviceWithImage = TDevice & {
+  image: string;
+}
+
 export type TFlattenDevice = {
   id: string;
   verboseName: string;
@@ -63,6 +67,10 @@ export type TFlattenDevice = {
   online: boolean;
   temperatureChartData: number[];
   trend: number;
+}
+
+export type TFlattenDeviceWithImage = TFlattenDevice & {
+  image: string;
 }
 
 export type TSelect<T> = {

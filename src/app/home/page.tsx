@@ -11,6 +11,7 @@ import { PacmanLoader } from 'react-spinners';
 import type { TDevice } from 'types/generalTypes';
 import { calculateAveragesDevicesKpis, calculateDevicesMetrics, flattenDevices } from 'utils/generalUtils';
 import Kpis from '@/components/kpis';
+import Modal from '@/components/modalWrapper/ModalWrapper';
 
 export type TGetAllDevices = {
   allDevices: TDevice[];
@@ -26,13 +27,13 @@ const Page = () => {
   return (
     <main className='p-4 pl-[256px] min-h-[100vh] flex items-center flex-col overflow-hidden'>
       { loading ? (
-        <div className='w-full min-h-[100vh] flex items-center justify-center absolute top-0 left-0'>
+        <Modal classnames='flex items-center justify-center'>
           <PacmanLoader
             color='#36d7b7'
             size={ 50 }
             aria-label='Loading Spinner'
           />
-        </div>
+        </Modal>
       ) : (
         <div className='flex flex-col items-start'>
           <Kpis deviceKpis={ averageKpis } title='Devices base kpis' />

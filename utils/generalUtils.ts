@@ -7,6 +7,7 @@ import {
   DeviceMeasurementFields,
   DeviceRoleFields,
   TFlattenDevice,
+  TFlattenDeviceWithImage,
   TTemperatureDataPoint,
 } from 'types/generalTypes';
 
@@ -55,7 +56,7 @@ export const flattenDevices = (data: TGetAllDevices): TFlattenDevice[] => data.a
   return result;
 });
 
-export const flattenDevice = ({ device }: TGetDevice): TFlattenDevice => {
+export const flattenDevice = ({ device }: TGetDevice): TFlattenDeviceWithImage => {
   const measurementsDict: Record<DeviceMeasurementFields, number> & { temperatureChartData: number[] } = {
     BATTERY: 0,
     DOOR_OPEN: 0,
@@ -79,7 +80,7 @@ export const flattenDevice = ({ device }: TGetDevice): TFlattenDevice => {
   // measurementsDict.temperatureChartData[1] - because we have a null value for the first element in array;
   const trend = calculateAverageTemperatureChange(measurementsDict.temperatureChartData);
 
-  const result: TFlattenDevice = { ...deviceWithoutMeasurementsAndRoleFields, trend, ...measurementsDict };
+  const result: TFlattenDeviceWithImage = { ...deviceWithoutMeasurementsAndRoleFields, trend, ...measurementsDict };
   // Merging the original device object with the measurementsDict
   return result;
 };
@@ -179,13 +180,25 @@ export function generateTemperatureTimeSeries(chartData: number[]): TTemperature
 
   const temperatureTimeSeries = chartData.reduce((acc, value, index) => {
     const hour = initialHour - index;
-    const time = hour < 10 ? `0${Math.abs(hour)}` : `${hour}`;
+    // eslint-disable-next-line no-nested-ternary
+    const time = hour < 0 ? `${Math.abs(hour)}` : hour < 10 ? `0${hour}` : `${hour}`;
 
-    acc.push({ time, value });
+    acc.push({ time, value: value === null ? 0 : +value.toFixed(2) });
 
     return acc;
   }, [] as TTemperatureDataPoint[]);
 
   // Reverse the time series to have the latest data first
   return temperatureTimeSeries.reverse();
+}
+
+export function formatDate(inputDate: Date | string) {
+  const date = new Date(inputDate);
+
+  // Extract date components
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based, so add 1
+  const year = date.getFullYear();
+
+  return `${day}.${month}.${year}`;
 }
