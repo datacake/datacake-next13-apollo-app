@@ -21,11 +21,13 @@ const RootLayout = ({
   useAuth();
   return (
     <html lang='en'>
-      <body className={ twMerge('bg-slate-300', montserrat.className) }>
-        <Providers>
-          {children}
-          <div id='portal' />
-        </Providers>
+      <body className={ twMerge('bg-slate-900', montserrat.className) }>
+        <main className='w-full'>
+          <Providers>
+            {children}
+            <div id='portal' />
+          </Providers>
+        </main>
       </body>
     </html>
   );

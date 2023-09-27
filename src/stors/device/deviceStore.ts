@@ -32,7 +32,7 @@ const useDeviceStore = create<TZDeviceState>()(
     setFilterByTagsOptions: (flutteredDevices) => set((state) => {
       const tags = [ ...new Set(flutteredDevices.map((device) => device.tags).flat()) ];
 
-      state.filterByTags.options = [ ...tags, 'All' ];
+      state.filterByTags.options = [ 'All', ...tags ];
     }),
   }))),
 );

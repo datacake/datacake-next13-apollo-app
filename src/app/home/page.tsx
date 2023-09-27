@@ -8,10 +8,11 @@ import DeviceTable from '@/components/deviceTable';
 import getAllDevices from '@/graphql/queries/getAllDevices.gql';
 import { useQuery } from '@apollo/client';
 import { PacmanLoader } from 'react-spinners';
-import type { TDevice } from 'types/generalTypes';
+import type { TDevice, TFlattenDevice } from 'types/generalTypes';
 import { calculateAveragesDevicesKpis, calculateDevicesMetrics, flattenDevices } from 'utils/generalUtils';
 import Kpis from '@/components/kpis';
 import Modal from '@/components/modalWrapper/ModalWrapper';
+import { useEffect, useState } from 'react';
 
 export type TGetAllDevices = {
   allDevices: TDevice[];
@@ -21,27 +22,28 @@ export const revalidate = 1;
 
 const Page = () => {
   const { data, loading, error } = useQuery<TGetAllDevices>(getAllDevices);
-  const flattenedDevices = flattenDevices(data || { allDevices: [] });
-  const devicesMetrics = calculateDevicesMetrics({ deviceArray: flattenedDevices });
-  const averageKpis = calculateAveragesDevicesKpis({ deviceArray: flattenedDevices });
+  const [ flattenedDevices, setFlattenedDevices ] = useState<TFlattenDevice[]>([]);
+
+  useEffect(() => {
+    if (data?.allDevices) setFlattenedDevices(flattenDevices(data));
+  }, [ data ]);
+
+  if (loading) {
+    return (
+      <Modal classnames='flex items-center justify-center'>
+        <PacmanLoader color='#2bb89c' />
+      </Modal>
+    );
+  }
+
   return (
-    <main className='p-4 pl-[256px] min-h-[100vh] flex items-center flex-col overflow-hidden'>
-      { loading ? (
-        <Modal classnames='flex items-center justify-center'>
-          <PacmanLoader
-            color='#36d7b7'
-            size={ 50 }
-            aria-label='Loading Spinner'
-          />
-        </Modal>
-      ) : (
-        <div className='flex flex-col items-start'>
-          <Kpis deviceKpis={ averageKpis } title='Devices base kpis' />
-          <Metrics devicesMetrics={ devicesMetrics } title='Main metrics' />
-          <DeviceTable deviceArr={ flattenedDevices } />
-        </div>
-      )}
-    </main>
+    <div className=' p-4 min-h-[100vh] overflow-hidden pb-[50px] flex justify-center'>
+      <div className='flex flex-col items-start'>
+        <Kpis title='Devices base kpis' />
+        <Metrics title='Main metrics' />
+        <DeviceTable deviceArr={ flattenedDevices } />
+      </div>
+    </div>
   );
 };
 

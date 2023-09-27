@@ -11,8 +11,13 @@ const RootLayout = ({
   children: React.ReactNode;
 }) => (
   <>
+    <header className='h-12 bg-slate-800 fixed top-0 z-[100] w-full flex items-center justify-center'>
+      <h2 className='text-xl font-bold text-white'>Datacake Example</h2>
+    </header>
     <Sidebar />
-    {children}
+    <div className='pl-[256px] pt-12'>
+      {children}
+    </div>
   </>
 );
 

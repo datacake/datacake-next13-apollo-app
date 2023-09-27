@@ -1,4 +1,9 @@
-import { FC, ComponentPropsWithoutRef } from 'react';
+import {
+  FC, ComponentPropsWithoutRef, useState, useEffect,
+} from 'react';
+import useDeviceStore from '@/stors/device/deviceStore';
+import { selectFilteredDeviceArr } from '@/stors/device/deviceSelectors';
+import { calculateAveragesDevicesKpis } from 'utils/generalUtils';
 import BoxWithTitleAndValue from '../boxWithTitleAndValue';
 
 type TDevicesKpisItem = {
@@ -13,31 +18,40 @@ type TDevicesKpis ={
 
 type TKpis = ComponentPropsWithoutRef<'section'> & {
   title?: string;
-  deviceKpis: TDevicesKpis;
 }
 
 const Kpis: FC<TKpis> = ({
-  deviceKpis,
   title,
   ...restProps
-}) => (
-  <section
-    className='text-gray-600'
-    { ...restProps }
-  >
-    { title ? <h2 className='text-lg font-medium'>{ title }</h2> : null }
-    <div
-      className='container py-5 mx-auto flex flex-wrap gap-3 justify-between'
+}) => {
+  const filteredDevices = useDeviceStore(selectFilteredDeviceArr);
+  const [ deviceKpis, setDeviceKpis ] = useState<TDevicesKpis | null>(null);
+
+  useEffect(() => {
+    if (filteredDevices.length > 0) {
+      setDeviceKpis(calculateAveragesDevicesKpis({ deviceArray: filteredDevices }));
+    }
+  }, [ filteredDevices ]);
+
+  return (
+    <section
+      className='text-white'
+      { ...restProps }
     >
-      { deviceKpis !== null && Object.values(deviceKpis).map((item) => (
-        <BoxWithTitleAndValue
-          key={ item.title }
-          title={ item.title }
-          value={ item.value }
-        />
-      ))}
-    </div>
-  </section>
-);
+      { title ? <h2 className='text-lg font-medium'>{ title }</h2> : null }
+      <div
+        className='container py-5 mx-auto flex flex-wrap gap-3 justify-between'
+      >
+        { deviceKpis !== null && Object.values(deviceKpis).map((item) => (
+          <BoxWithTitleAndValue
+            key={ item.title }
+            title={ item.title }
+            value={ item.value }
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default Kpis;

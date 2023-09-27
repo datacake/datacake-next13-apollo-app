@@ -23,16 +23,17 @@ const NavigationListItem: FC<INavigationListItem> = ({
     <Link
       href={ link }
       onClick={ onClick && onClick }
-      className='flex group-hover:stroke-slate-900 text-slate-600 transition-all duration-250 items-center p-2 space-x-3 rounded-md border-solid border-transparent border hover:border-b-slate-900 hover:border hover:text-slate-900'
     >
-      { Icon && (
-      <Icon
-        className='stroke-slate-600 group-hover:stroke-slate-900 transition-all duration-250'
-        width='30px'
-        height='30px'
-      />
-      ) }
-      <span className='text-lg font-medium'>{ text }</span>
+      <button type='button' className='flex items-center w-full p-2 h-[46px] text-bas transition duration-75 rounded-lg group  text-white hover:bg-gray-700' aria-controls='dropdown-example' data-collapse-toggle='dropdown-example'>
+        { Icon && (
+        <Icon
+          className='stroke-slate-600 group-hover:stroke-slate-400 transition-all duration-250'
+          width='30px'
+          height='30px'
+        />
+        ) }
+        <span className='flex-1 ml-3 text-left whitespace-nowrap'>{ text }</span>
+      </button>
     </Link>
   </li>
 );

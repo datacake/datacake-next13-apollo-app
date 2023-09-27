@@ -17,6 +17,8 @@ import { useParams } from 'next/navigation';
 import CustomLineChart from '@/components/customLineChart';
 import DeviceBoxInfo from '@/components/deviceBoxInfo';
 import Modal from '@/components/modalWrapper';
+import DeviceMainInfoBox from '@/components/deviceMainInfoBox';
+import CustomAreaChart from '@/components/customAreaChart';
 
 export type TGetDevice = {
   device: TDeviceWithImage;
@@ -28,6 +30,7 @@ const Page = () => {
     variables: {
       deviceId,
     },
+    fetchPolicy: 'no-cache',
   });
   const [ flattenedDevice, setFlattenedDevice ] = useState<TFlattenDeviceWithImage | null>(null);
 
@@ -47,10 +50,21 @@ const Page = () => {
   }
 
   return (
-    <main className='p-4 pl-[256px] min-h-[100vh] flex items-center flex-col overflow-hidden'>
+    <main className='p-4 min-h-[100vh] flex items-center flex-col overflow-hidden'>
       <div className='flex flex-col items-start gap-[20px]'>
-        { flattenedDevice && <DeviceBoxInfo device={ flattenedDevice } /> }
+        { flattenedDevice && (
+          <>
+            <DeviceBoxInfo device={ flattenedDevice } />
+            <DeviceMainInfoBox
+              device={ flattenedDevice }
+              classname='mt-1 gap-12'
+            />
+          </>
+        )}
         <CustomLineChart data={ chartData } />
+        <div>
+          <CustomAreaChart data={ chartData } />
+        </div>
       </div>
     </main>
   );

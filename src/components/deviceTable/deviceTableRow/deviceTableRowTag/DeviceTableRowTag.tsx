@@ -9,7 +9,7 @@ const DeviceTableRowTag: FC<TDeviceTableRowTag> = ({
   ...restProps
 }) => (
   <span
-    className='bg-slate-400 rounded-full p-2 text-slate-100 text-[12px]'
+    className='bg-slate-500 rounded-full p-2 text-white text-[12px]'
     { ...restProps }
   >
     { text }

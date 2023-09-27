@@ -15,20 +15,24 @@ const CustomLineChart: FC<TCustomLineChart> = ({
 }) => (
   <LineChart
     syncId={ 123 }
-    className='bg-white rounded-lg shadow-custom'
+    className='bg-slate-700 bg-opacity-75 rounded-lg shadow-custom text-white'
     width={ 1000 }
     height={ 300 }
     data={ data }
     margin={ {
       top: 30,
       right: 20,
-      left: -20,
+      left: 0,
       bottom: 20,
     } }
   >
-    <CartesianGrid strokeDasharray='1 0' className='stroke-gray-600' vertical={ false } />
-    <XAxis dataKey='time' className='stroke-gray-600' />
-    <YAxis />
+    <XAxis
+      dataKey='time'
+      stroke='#c2c2c2'
+    />
+    <YAxis
+      stroke='#c2c2c2'
+    />
     <Tooltip />
     <Line type='monotone' dataKey='value' className='stroke-gray-600' />
   </LineChart>

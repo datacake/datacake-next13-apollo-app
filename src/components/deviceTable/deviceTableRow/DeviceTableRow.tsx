@@ -19,7 +19,7 @@ const DeviceTableRow: FC<TDeviceTableRow> = ({
   ...restProps
 }) => (
   <tr
-    className='border-b bg-neutral-100 even:bg-gray-300 even:text-gray-600'
+    className='odd:bg-opacity-75 even:bg-opacity-75 odd:bg-slate-600 text-white even:bg-slate-700'
     { ...restProps }
   >
     <td className='whitespace-nowrap px-6 py-4 font-medium'>

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { FC, ComponentPropsWithoutRef } from 'react';
 import { TFlattenDeviceWithImage } from 'types/generalTypes';
 import { formatDate } from 'utils/generalUtils';
+import BatteryIcon from '@/svgs/BatteryIcon';
 import DeviceBoxInfoItem from './deviceBoxInfoItem';
 
 type TDeviceBoxInfo = ComponentPropsWithoutRef<'div'> & {
@@ -14,72 +15,70 @@ const DeviceBoxInfo: FC<TDeviceBoxInfo> = ({
 }) => {
   const {
     BATTERY,
-    DOOR_OPEN,
-    INTERNAL_TEMPERATURE,
     WARNING,
     lastHeard,
     location,
     online,
     serialNumber,
-    trend,
     verboseName,
   } = device;
   return (
     <div
-      className='p-4 bg-white rounded-lg shadow-custom flex gap-2 max-w-[1000px]'
+      className='p-4 bg-slate-700 bg-opacity-75 rounded-lg shadow-custom flex gap-2 max-w-[1000px]'
       { ...restProps }
     >
-      <div className='min-w-[280px] min-h-[200px] w-fit h-fit'>
+      <div className='min-w-[100px] min-h-[67px]'>
         <Image
           alt='device photo'
           src={ device.image || '/images/image-placeholder.jpg' }
-          width={ 280 }
-          height={ 200 }
+          width={ 100 }
+          height={ 67 }
         />
       </div>
-      <div className='flex flex-wrap gap-3 items-stretch'>
-        <DeviceBoxInfoItem
-          title='Battery'
-          value={ BATTERY }
-        />
+      <div className='flex flex-col justify-around gap-2  text-white'>
+        <div>
+          <h2 className='font-medium text-lg'>{verboseName}</h2>
+        </div>
+        <div className='flex flex-wrap gap-2'>
+          <DeviceBoxInfoItem
+            title='Location'
+          // eslint-disable-next-line no-extra-boolean-cast
+            value={ (location.length < 1 || !!location) ? 'unknown' : location }
+          />
+          <DeviceBoxInfoItem
+            title='Serial number'
+            value={ serialNumber }
+          />
+          <DeviceBoxInfoItem
+            Icon={ BatteryIcon }
+            value={ BATTERY }
+          />
+          <DeviceBoxInfoItem
+            title='Last heard'
+            value={ formatDate(lastHeard) }
+          />
+          <DeviceBoxInfoItem
+            title='Online'
+            value={ online ? 'yes' : 'offline' }
+          />
+          <DeviceBoxInfoItem
+            title='Warnings'
+            value={ WARNING ? 'yes' : 'no' }
+          />
+        </div>
+        {/*
         <DeviceBoxInfoItem
           title='Door status'
           value={ DOOR_OPEN ? 'Open' : 'Close' }
-        />
-        <DeviceBoxInfoItem
-          title='Warnings'
-          value={ WARNING ? 'yes' : 'no' }
         />
         <DeviceBoxInfoItem
           title='Temperature'
           value={ `${INTERNAL_TEMPERATURE}°C` }
         />
         <DeviceBoxInfoItem
-          title='Last heard'
-          value={ formatDate(lastHeard) }
-        />
-        <DeviceBoxInfoItem
-          title='Location'
-          // eslint-disable-next-line no-extra-boolean-cast
-          value={ (location.length < 1 || !!location) ? 'unknown' : location }
-        />
-        <DeviceBoxInfoItem
-          title='Online'
-          value={ online ? 'yes' : 'offline' }
-        />
-        <DeviceBoxInfoItem
-          title='Serial number'
-          value={ serialNumber }
-        />
-
-        <DeviceBoxInfoItem
-          title='Name'
-          value={ verboseName }
-        />
-        <DeviceBoxInfoItem
           title='Temperature trend'
           value={ trend }
-        />
+        /> */}
       </div>
     </div>
   );
