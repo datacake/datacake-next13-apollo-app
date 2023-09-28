@@ -19,8 +19,6 @@ export type TGetAllDevices = {
 export const revalidate = 1;
 
 const Page = () => {
-  // const [ email, setEmail ] = useState('serhiibessonov.work@gmail.com');
-  // const [ password, setPassword ] = useState('QadsnDB*x454');\
 
   const {
     handleSubmit,
@@ -29,8 +27,8 @@ const Page = () => {
     setError,
   } = useForm<TLoginSchema & {customError: string}>({
     defaultValues: {
-      email: 'serhiibessonov.work@gmail.com',
-      password: 'QadsnDB*x454',
+      email: '',
+      password: '',
       customError: '',
     },
     resolver: zodResolver(loginSchema),
