@@ -6,7 +6,7 @@
 import { useQuery } from '@apollo/client';
 import { PacmanLoader } from 'react-spinners';
 import type {
-  TDevice, TDeviceWithImage, TFlattenDevice, TFlattenDeviceWithImage,
+  TDeviceWithImage, TFlattenDeviceWithImage,
 } from 'types/generalTypes';
 import {
   flattenDevice, generateTemperatureTimeSeries,
@@ -26,7 +26,7 @@ export type TGetDevice = {
 
 const Page = () => {
   const { deviceId } = useParams();
-  const { data, loading, error } = useQuery<TGetDevice>(getDeviceById, {
+  const { data, loading } = useQuery<TGetDevice>(getDeviceById, {
     variables: {
       deviceId,
     },

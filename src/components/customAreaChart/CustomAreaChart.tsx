@@ -1,11 +1,12 @@
 'use client';
 
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import {
-  XAxis, YAxis, CartesianGrid, Tooltip, AreaChart, Area,
+  XAxis, YAxis, Tooltip, AreaChart, Area,
 } from 'recharts';
 import { TTemperatureDataPoint } from 'types/generalTypes';
 import CustomTooltip from 'src/components/customAreaChart/customTooltip';
+import { useTheme } from 'next-themes';
 
 const gradientOffset = (data: TTemperatureDataPoint[]) => {
   const dataMax = Math.max(...data.map((i) => i.value));
@@ -30,11 +31,12 @@ const CustomAreaChart: FC<TCustomAreaChart> = ({
 }) => {
   const off = gradientOffset(data);
   const yTicks = [ -20, -10, 0, 10, 20 ];
+  const { theme } = useTheme();
 
   return (
     <AreaChart
       syncId={ 1234 }
-      className='bg-slate-700 bg-opacity-75 rounded-lg shadow-custom text-white'
+      className='bg-slate-300 dark:bg-slate-700 dark:bg-opacity-75 rounded-lg shadow-custom text-zinc-800 dark:text-white'
       width={ 1000 }
       height={ 300 }
       data={ data }
@@ -47,10 +49,10 @@ const CustomAreaChart: FC<TCustomAreaChart> = ({
     >
       <XAxis
         dataKey='time'
-        stroke='#c2c2c2'
+        stroke={ theme === 'dark' ? '#c2c2c2' : '#27272a' }
       />
       <YAxis
-        stroke='#c2c2c2'
+        stroke={ theme === 'dark' ? '#c2c2c2' : '#27272a' }
         domain={ [ 'dataMin', 'dataMax' ] }
         ticks={ yTicks }
       />
@@ -61,7 +63,12 @@ const CustomAreaChart: FC<TCustomAreaChart> = ({
           <stop offset={ off } stopColor='#0084c7' stopOpacity={ 1 } />
         </linearGradient>
       </defs>
-      <Area type='monotone' dataKey='value' stroke='#252525' fill='url(#splitColor)' />
+      <Area
+        type='monotone'
+        dataKey='value'
+        stroke={ theme === 'dark' ? '#3182bd' : '#1e3a8a' }
+        fill='url(#splitColor)'
+      />
     </AreaChart>
   );
 };

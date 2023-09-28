@@ -6,14 +6,11 @@ import {
 import { TFlattenDevice } from 'types/generalTypes';
 import useDeviceStore from '@/stors/device/deviceStore';
 import {
-  selectFilterByTagsCurrent,
-  selectFilterByTagsOptions,
   selectFilteredDeviceArr,
   selectSetDevices,
   selectSetFilterByTagsCurrent,
   selectSetFilterByTagsOptions,
 } from '@/stors/device/deviceSelectors';
-import CustomSelect from 'src/components/customSelect';
 import { useRouter, useSearchParams } from 'next/navigation';
 import DeviceTableRow from './deviceTableRow';
 
@@ -53,20 +50,12 @@ const DeviceTable: FC<IDeviceTable> = ({ deviceArr }) => {
 
   return (
     <div className='flex items-center flex-col'>
-      {/* <div className='w-[200px] self-start'>
-        <CustomSelect
-          currValue={ filterByTagsCurrent }
-          setActiveOption={ setFilterByTagsCurrent }
-          text='Filter by tags'
-          options={ filterByTagsOptions }
-        />
-      </div> */}
 
-      <h2 className='self-start text-white text-lg font-medium mb-[12px]'>Your devices</h2>
+      <h2 className='self-start text-zinc-800 dark:text-white text-lg font-medium mb-[12px]'>Your devices</h2>
       <div className='max-h-[500px] overflow-hidden overflow-y-auto scrollbar rounded-lg scrollbar-thumb-gray-400 scrollbar-track-gray-200 custom-scrollbar'>
         <table className='min-w-fit max-w-7xl text-left text-sm font-light'>
           <thead
-            className='bg-slate-700 bg-opacity-75 text-white text-center sticky top-0'
+            className=' bg-slate-400 dark:bg-slate-700 bg-opacity-75 text-zinc-800 dark:text-white text-center sticky top-0'
             style={ { zIndex: 2 } }
           >
             <tr>

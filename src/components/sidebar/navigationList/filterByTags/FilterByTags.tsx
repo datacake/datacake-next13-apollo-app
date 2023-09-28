@@ -11,7 +11,7 @@ import SubmenuItem from './submenuItem';
 
 type TFilterByTags = ComponentPropsWithoutRef<'li'>
 
-const FilterByTags: FC<TFilterByTags> = ({ ...restProps }) => {
+const FilterByTags: FC<TFilterByTags> = () => {
   const searchParams = useSearchParams();
   const selectedTag = searchParams.get('tag');
   const [ submenuOpen, setSubmenuOpen ] = useState(false);
@@ -25,7 +25,7 @@ const FilterByTags: FC<TFilterByTags> = ({ ...restProps }) => {
     <li
       onClick={ (e) => handleSetSubmenuOpen(e) }
     >
-      <button type='button' className='flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' aria-controls='dropdown-example' data-collapse-toggle='dropdown-example'>
+      <button type='button' className='flex items-center w-full p-2 text-base transition duration-75 rounded-lg group text-zinc-800 hover:bg-gray-300 dark:text-white dark:hover:bg-gray-700' aria-controls='dropdown-example' data-collapse-toggle='dropdown-example'>
         <span className='flex-1 ml-3 text-left whitespace-nowrap'>Tags</span>
         <svg className='w-3 h-3' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'>
           <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m1 1 4 4 4-4' />

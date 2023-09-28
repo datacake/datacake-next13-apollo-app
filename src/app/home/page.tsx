@@ -9,7 +9,7 @@ import getAllDevices from '@/graphql/queries/getAllDevices.gql';
 import { useQuery } from '@apollo/client';
 import { PacmanLoader } from 'react-spinners';
 import type { TDevice, TFlattenDevice } from 'types/generalTypes';
-import { calculateAveragesDevicesKpis, calculateDevicesMetrics, flattenDevices } from 'utils/generalUtils';
+import { flattenDevices } from 'utils/generalUtils';
 import Kpis from '@/components/kpis';
 import Modal from '@/components/modalWrapper/ModalWrapper';
 import { useEffect, useState } from 'react';
@@ -21,7 +21,7 @@ export type TGetAllDevices = {
 export const revalidate = 1;
 
 const Page = () => {
-  const { data, loading, error } = useQuery<TGetAllDevices>(getAllDevices);
+  const { data, loading } = useQuery<TGetAllDevices>(getAllDevices);
   const [ flattenedDevices, setFlattenedDevices ] = useState<TFlattenDevice[]>([]);
 
   useEffect(() => {

@@ -24,7 +24,7 @@ const DeviceBoxInfo: FC<TDeviceBoxInfo> = ({
   } = device;
   return (
     <div
-      className='p-4 bg-slate-700 bg-opacity-75 rounded-lg shadow-custom flex gap-2 max-w-[1000px]'
+      className='p-4 bg-slate-300 dark:bg-slate-700 dark:bg-opacity-75 rounded-lg shadow-custom flex gap-2 max-w-[1000px]'
       { ...restProps }
     >
       <div className='min-w-[100px] min-h-[67px]'>
@@ -35,7 +35,7 @@ const DeviceBoxInfo: FC<TDeviceBoxInfo> = ({
           height={ 67 }
         />
       </div>
-      <div className='flex flex-col justify-around gap-2  text-white'>
+      <div className='flex flex-col justify-around gap-2  text-zinc-800  dark:text-white'>
         <div>
           <h2 className='font-medium text-lg'>{verboseName}</h2>
         </div>
@@ -66,19 +66,6 @@ const DeviceBoxInfo: FC<TDeviceBoxInfo> = ({
             value={ WARNING ? 'yes' : 'no' }
           />
         </div>
-        {/*
-        <DeviceBoxInfoItem
-          title='Door status'
-          value={ DOOR_OPEN ? 'Open' : 'Close' }
-        />
-        <DeviceBoxInfoItem
-          title='Temperature'
-          value={ `${INTERNAL_TEMPERATURE}°C` }
-        />
-        <DeviceBoxInfoItem
-          title='Temperature trend'
-          value={ trend }
-        /> */}
       </div>
     </div>
   );

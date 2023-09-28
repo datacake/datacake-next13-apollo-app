@@ -35,7 +35,7 @@ const Kpis: FC<TKpis> = ({
 
   return (
     <section
-      className='text-white'
+      className='text-zinc-800 dark:text-white'
       { ...restProps }
     >
       { title ? <h2 className='text-lg font-medium'>{ title }</h2> : null }

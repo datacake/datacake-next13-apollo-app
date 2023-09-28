@@ -21,7 +21,7 @@ const RootLayout = ({
   useAuth();
   return (
     <html lang='en'>
-      <body className={ twMerge('bg-slate-900', montserrat.className) }>
+      <body className={ twMerge('bg-slate-200 dark:bg-slate-900', montserrat.className) }>
         <main className='w-full'>
           <Providers>
             {children}

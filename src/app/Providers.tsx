@@ -1,18 +1,18 @@
 'use client';
 
 import createApolloClient from '@/graphql/lib/clientProvider';
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  ApolloLink,
   ApolloProvider,
-  HttpLink,
 } from '@apollo/client';
+import ThemeProvider from './providers/ThemeProvider';
 
 const client = createApolloClient();
 
 const Providers = ({ children }: React.PropsWithChildren) => (
   <ApolloProvider client={ client }>
-    {children}
+    <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+      {children}
+    </ThemeProvider>
   </ApolloProvider>
 
 );

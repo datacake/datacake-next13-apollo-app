@@ -5,7 +5,7 @@ interface INavigationListItem extends HTMLAttributes<HTMLLIElement> {
   link?: string;
   text: string;
   Icon?: FC<SVGProps<SVGSVGElement>>;
-  onClick?: (...args: any[]) => void;
+  onClick?: () => void;
 }
 
 const NavigationListItem: FC<INavigationListItem> = ({
@@ -17,17 +17,16 @@ const NavigationListItem: FC<INavigationListItem> = ({
 }) => (
   <li
     className='rounded-sm group'
-    // eslint-disable-next-line react/jsx-props-no-spreading
     { ...restProps }
   >
     <Link
       href={ link }
       onClick={ onClick && onClick }
     >
-      <button type='button' className='flex items-center w-full p-2 h-[46px] text-bas transition duration-75 rounded-lg group  text-white hover:bg-gray-700' aria-controls='dropdown-example' data-collapse-toggle='dropdown-example'>
+      <button type='button' className='flex items-center w-full p-2 h-[46px] text-bas transition duration-75 rounded-lg group text-zinc-800 hover:bg-gray-300 dark:text-white dark:hover:bg-gray-700' aria-controls='dropdown-example' data-collapse-toggle='dropdown-example'>
         { Icon && (
         <Icon
-          className='stroke-slate-600 group-hover:stroke-slate-400 transition-all duration-250'
+          className='stroke-zinc-600 group-hover:stroke-zinc-800 dark:stroke-slate-600 dark:group-hover:stroke-slate-400 transition-all duration-250'
           width='30px'
           height='30px'
         />
