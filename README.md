@@ -1,34 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+__Creating a Custom Application with DATACAKE API__
+This guide will walk you through the process of creating a custom application using the DATACAKE API. You’ll learn how to connect to the GraphQL API, which is specifically designed for monitoring your devices and tracking their temperatures.
+__Setting Up and Deploying the Test App:__
+__Step 1:__ Visit [__repository__](https://github.com/datacake/datacake-next13-apollo-app) - https://github.com/datacake/datacake-next13-apollo-app. Click the __green “Code”__ button located in the top right corner and select __“Download ZIP”__ from the dropdown menu.
+__Step 2:__ Once the ZIP file is downloaded, extract its contents. Open the extracted folder in your preferred code editor (e.g., Visual Studio Code). If using Visual Studio Code, navigate to __File > Open > Folder__ and select the extracted folder.
+__Step 3:__ Launch the terminal in your code editor (Ctrl/Command + ` for Visual Studio Code).
+__Step 4:__ Ensure your terminal’s working directory is set to \datacake-next13-apollo-app-main.
+__Step 5:__ In the terminal, enter npm run dev. Once the app starts, you’ll see a link highlighted in red. You can click on or copy this link to view the app in your browser.
+__Step 6:__ By default, the app should be accessible at __http://localhost:3000__. If you encounter any issues, refer to the terminal messages after executing npm run dev. Look for a line starting with __“ready... url: http://localhost:...”__ to identify the correct port.
+__Step 7:__ Enjoy your custom application!

@@ -19,7 +19,6 @@ export type TGetAllDevices = {
 export const revalidate = 1;
 
 const Page = () => {
-
   const {
     handleSubmit,
     register,
@@ -27,8 +26,8 @@ const Page = () => {
     setError,
   } = useForm<TLoginSchema & {customError: string}>({
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'coldchaindemo@datacake.co',
+      password: 'ColdChainDemo2023!',
       customError: '',
     },
     resolver: zodResolver(loginSchema),
